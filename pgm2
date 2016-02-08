@@ -80,7 +80,7 @@ void printRecord(struct Account &act, fstream &file)
 	file << act.lastPaymentDate << endl;
 }
 
-fstream deleteRecord(fstream &file, string name)
+void deleteRecord(fstream &file, string name)
 {
 	fstream tempFile;
 	tempFile.open("temp.txt", ios::in | ios::out);
@@ -102,7 +102,14 @@ fstream deleteRecord(fstream &file, string name)
 		strTemp += "\n";
 		tempFile << strTemp;
 	}
-	return tempFile;
+	tempFile.close();
+	file.close();
+	if (remove("accounts.txt") != 0)
+		cout << "error in deleting old file" << endl;
+	if (rename("temp.txt", "accounts.txt") != 0)
+		cout << "error in renaming new file" << endl;
+
+	
 }
 
 fstream editRecord(fstream &file, string name)
@@ -221,7 +228,14 @@ int main() {
 			cout << "What name are you looking for?: ";
 			cin >> name;
 
-			file = deleteRecord(file, name);
+			//file = deleteRecord(file, name);
+
+			deleteRecord(file, name);
+
+			//file.open("accounts.txt", ios::out | ios::in);
+
+			 
+
 		}
 
 		if (option == 4)
