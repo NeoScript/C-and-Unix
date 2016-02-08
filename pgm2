@@ -1,4 +1,4 @@
-// MAKE SURE "accounts.txt" IS IN THE SAME FOLDER AS YOUR CPP
+//
 //  main.cpp
 //  pgm2
 //
@@ -80,12 +80,68 @@ void printRecord(struct Account &act, fstream &file)
 	file << act.lastPaymentDate << endl;
 }
 
+fstream deleteRecord(fstream &file, string name)
+{
+	fstream tempFile;
+	tempFile.open("temp.txt", ios::in | ios::out);
+	string strTemp;
+
+	file.clear();
+	file.seekg(0);
+
+	while (getline(file,strTemp))
+	{
+		if (strTemp == name)
+		{
+			//	ignore the record to be deleted
+			for (int i = 0; i < 5; i++)
+			{
+				getline(file, strTemp);
+			}
+		}
+		strTemp += "\n";
+		tempFile << strTemp;
+	}
+	return tempFile;
+}
+
+fstream editRecord(fstream &file, string name)
+{
+	fstream tempFile;
+	tempFile.open("temp.txt", ios::in | ios::out);
+	string strTemp;
+
+	file.clear();
+	file.seekg(0);
+
+	while (getline(file, strTemp))
+	{
+		if (strTemp == name)
+		{
+			//	ignore the record to be deleted
+			for (int i = 0; i < 5; i++)
+			{
+				getline(file, strTemp);
+			}
+
+			Account act;
+			fillRecord(act);
+			//	write account information to the file
+			printRecord(act, tempFile);
+		}
+		strTemp += "\n";
+		tempFile << strTemp;
+	}
+	//remove("accounts.txt");
+	//rename("temp.txt", "accounts.txt");
+	return tempFile;
+}
+
 int main() {
-	// insert code here...
+
 	fstream file;
-
-	file.open("accounts.txt", ios::in | ios::out);
-
+	file.open("accounts.txt", ios::out | ios::in);
+	
 	//test for file access error
 	if (file.fail())
 	{
@@ -98,6 +154,9 @@ int main() {
 	//	run until sentinel is entered
 	while (option != 6)
 	{
+		file.clear();
+		file.seekg(0);
+
 		string name;
 		string buffer;
 		printOptions();
@@ -153,6 +212,31 @@ int main() {
 			}
 		}
 
+		if (option == 3)
+		{
+			//	reset streampos pointer to beginning of file
+			file.clear();
+			file.seekg(0);
+
+			cout << "What name are you looking for?: ";
+			cin >> name;
+
+			file = deleteRecord(file, name);
+		}
+
+		if (option == 4)
+		{
+			//	reset streampos pointer to beginning of file
+			file.clear();
+			file.seekg(0);
+
+			cout << "What name are you looking for?: ";
+			cin >> name;
+			cin.ignore();
+
+			file = editRecord(file, name);
+			//bool accountFound = false;
+		}
 		// print all of file
 		if (option == 5)
 		{
@@ -160,9 +244,9 @@ int main() {
 			{
 				cout << buffer << endl;
 			}
+			cout << endl;
 		}
 	}
 	
-
 	return 0;
 }
