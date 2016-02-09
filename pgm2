@@ -1,10 +1,6 @@
 //
 //  main.cpp
 //  pgm2
-//
-//  Created by Hameed Hakimi on 2/8/16.
-//  Copyright © 2016 Hameed Hakimi. All rights reserved.
-//
 
 #include <iostream>
 #include <fstream>
@@ -101,13 +97,10 @@ void deleteRecord(fstream &file, string name)
 				getline(file, strTemp);
 			}
 		}
-
-		
 		strTemp += "\n";
 		tempFile << strTemp;
 	}
 
-	
 	tempFile.close();
 
 	file.close();
@@ -152,7 +145,6 @@ void editRecord(fstream &file, string name)
 	if (rename("temp.txt", "accounts.txt") != 0)
 		cout << "error in renaming new file" << endl;
 }
-
 
 
 int main() {
