@@ -36,7 +36,7 @@ void printOptions()
 }
 
 //	fill out the struct attributes
-void fillRecord(struct Account &act) 
+void fillRecord(struct Account &act)
 {
 	cout << "Enter Name: ";
 	getline(cin, act.name);
@@ -69,7 +69,7 @@ void fillRecord(struct Account &act)
 }
 
 //	print struct information to file
-void printRecord(struct Account &act, fstream &file) 
+void printRecord(struct Account &act, fstream &file)
 {
 	file << endl;
 	file << act.name << endl;
@@ -78,18 +78,20 @@ void printRecord(struct Account &act, fstream &file)
 	file << act.phoneNumber << endl;
 	file << act.balance << endl;
 	file << act.lastPaymentDate << endl;
+	cout << endl;
 }
+
 
 void deleteRecord(fstream &file, string name)
 {
 	fstream tempFile;
-	tempFile.open("temp.txt", ios::in | ios::out);
+	tempFile.open("temp.txt", ios::app | ios::out | ios::in);
 	string strTemp;
-
+	
 	file.clear();
 	file.seekg(0);
 
-	while (getline(file,strTemp))
+	while (getline(file, strTemp))
 	{
 		if (strTemp == name)
 		{
@@ -99,23 +101,27 @@ void deleteRecord(fstream &file, string name)
 				getline(file, strTemp);
 			}
 		}
+
+		
 		strTemp += "\n";
 		tempFile << strTemp;
 	}
+
+	
 	tempFile.close();
+
 	file.close();
 	if (remove("accounts.txt") != 0)
 		cout << "error in deleting old file" << endl;
 	if (rename("temp.txt", "accounts.txt") != 0)
 		cout << "error in renaming new file" << endl;
-
-	
 }
 
-fstream editRecord(fstream &file, string name)
+void editRecord(fstream &file, string name)
 {
 	fstream tempFile;
-	tempFile.open("temp.txt", ios::in | ios::out);
+	tempFile.open("temp.txt", ios::app | ios::out | ios::in);
+
 	string strTemp;
 
 	file.clear();
@@ -139,22 +145,22 @@ fstream editRecord(fstream &file, string name)
 		strTemp += "\n";
 		tempFile << strTemp;
 	}
-	//remove("accounts.txt");
-	//rename("temp.txt", "accounts.txt");
-	return tempFile;
+	tempFile.close();
+	file.close();
+	if (remove("accounts.txt") != 0)
+		cout << "error in deleting old file" << endl;
+	if (rename("temp.txt", "accounts.txt") != 0)
+		cout << "error in renaming new file" << endl;
 }
+
+
 
 int main() {
 
 	fstream file;
-	file.open("accounts.txt", ios::out | ios::in);
-	
-	//test for file access error
-	if (file.fail())
-	{
-		cout << "Error accessing file!";
-	}
+	file.open("accounts.txt", ios::app | ios::out | ios::in);
 
+	//fstream file = fileOpen("accounts.txt");
 	Account act;
 	int option = 0;
 
@@ -197,7 +203,7 @@ int main() {
 
 			//	continue searching while text exists in the file
 			while (getline(file, buffer))
-			{	
+			{
 				//	the string is found
 				if (buffer.find(name) != string::npos)
 				{
@@ -219,6 +225,7 @@ int main() {
 			}
 		}
 
+		//	delete a record
 		if (option == 3)
 		{
 			//	reset streampos pointer to beginning of file
@@ -227,17 +234,14 @@ int main() {
 
 			cout << "What name are you looking for?: ";
 			cin >> name;
-
-			//file = deleteRecord(file, name);
+			cout << endl;
 
 			deleteRecord(file, name);
 
-			//file.open("accounts.txt", ios::out | ios::in);
-
-			 
-
+			file.open("accounts.txt", ios::app | ios::out | ios::in);
 		}
 
+		//	edit a record
 		if (option == 4)
 		{
 			//	reset streampos pointer to beginning of file
@@ -247,9 +251,10 @@ int main() {
 			cout << "What name are you looking for?: ";
 			cin >> name;
 			cin.ignore();
+			cout << endl;
+			editRecord(file, name);
 
-			file = editRecord(file, name);
-			//bool accountFound = false;
+			file.open("accounts.txt", ios::out | ios::in);
 		}
 		// print all of file
 		if (option == 5)
@@ -261,6 +266,6 @@ int main() {
 			cout << endl;
 		}
 	}
-	
+
 	return 0;
 }
