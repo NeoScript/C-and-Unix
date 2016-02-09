@@ -6,6 +6,11 @@
 
 using namespace std;
 
+const string fileName = "info.txt";
+
+/**
+ * This is the struct which will hold all the information for each customer within the following fields
+ */
 struct CustomerInfo {
     string name;
     string address;
@@ -15,6 +20,7 @@ struct CustomerInfo {
     string dateLastPaid;
 };
 
+//This vector will be used to store all the customer entries in memory so we don't have to access the disk drive and slow down operations
 vector<CustomerInfo> customers;
 
 /**
@@ -199,9 +205,16 @@ void deleteRecord(){
     }
 }
 
+/**
+ * This method will update the storage file with the new information
+ * It will overwrite any previous information stored in the file
+ *
+ * This method is called at the end of the application, when the user chooses to no longer perform operations
+ * on the records rather than constantly updating in an effort to minimize I/O
+ */
 void updateFile(){
     fstream file;
-    file.open("info.txt", ios::out | ios::trunc);
+    file.open(fileName, ios::out | ios::trunc);
     for(CustomerInfo i: customers){
         file << i.name << endl;
         file << i.address << endl;
@@ -215,9 +228,12 @@ void updateFile(){
     file.close();
 }
 
+/**
+ * This method will read information from the save file and then update the customers vector with the appropriate entries
+ */
 void updateFromFile(){
     fstream file;
-    file.open("info.txt", ios::in);
+    file.open(fileName, ios::in);
     vector<CustomerInfo> tempStorage;
 
     CustomerInfo temp;
@@ -250,7 +266,7 @@ void updateFromFile(){
                 linenum++;
                 break;
             case 7: //empty line
-                linenum = 1;
+                linenum = 1; //reset for the next set of inputs
                 tempStorage.push_back(temp);
                 break;
 
@@ -261,6 +277,12 @@ void updateFromFile(){
     file.close();
 }
 
+/**
+ * This is the main function, it runs a loop that will show a numbered menu from which a user can choose from the available
+ * record operations. Once an operation is chosen it is sent through the switch selection process to be forwarded to the appropriate
+ * method. At the start of this function information is read from the save file, and at the end the save file is overwritten with
+ * the new information.
+ */
 int main() {
     updateFromFile();
 
