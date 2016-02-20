@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "PatientAccount.h"
+#include "Surgery.h"
 
 /**
  * TODO: Group Project
@@ -80,8 +81,8 @@ void workWithPatient() {
     cout << "Select a Patient: ";
     getline(cin, inputName);
 
-    for(PatientAccount &i:patientDataBase){
-        if(i.getName()==inputName){
+    for(PatientAccount &currPatient:patientDataBase){
+        if(currPatient.getName() == inputName){
 
             int selection = 0;
             while(selection != 6){
@@ -90,7 +91,7 @@ void workWithPatient() {
                 cout << "----------------------" << endl;
                 cout << "1. Add Surgery Bill" << endl;
                 cout << "2. Add Pharmacy Bill" << endl;
-                cout << "3. Add to Days in Hospital" <<endl;
+                cout << "3. Add Days to Hospital Stay" <<endl;
                 cout << "4. Print current Info" <<endl;
                 cout << "5. Check-out" <<endl;
                 cout << "6. Exit Patient menu" <<endl;
@@ -99,8 +100,15 @@ void workWithPatient() {
 
                 switch (selection){
                     case 1:
-                        break;
+                        Surgery::listSurgeries();
+                        cin.ignore();
 
+                        cout << "Choose one: ";
+                        int input;
+                        cin >> input;
+
+                    Surgery::performOperation(Surgery::surgeryList.at(input-1), currPatient);
+                        break;
                 }
                 return;//done working with patient here, so we leave the method without going through the rest of the list without purpose
             }

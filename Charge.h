@@ -33,7 +33,7 @@ public:
 
     std::string toString() const{
         std::stringstream ss;
-        ss << "Name: " << getName() << "\nCost: "<<getCost();
+        ss << "Name: " << getName() << " Cost: "<<getCost();
 
         return ss.str();
     }
