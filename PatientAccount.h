@@ -18,11 +18,12 @@ class PatientAccount {
         string name;
         double totalCharges;
         int daysInHospital;
+        double dailyRate = 80;
     public:
         PatientAccount(string n);
         void charge(Charge s);
         string getName();
-        double getTotalChargse();
+        double getTotalCharges();
         int getDaysInHospital();
         void incrementStay(int days);
         string toString();

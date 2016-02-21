@@ -22,7 +22,7 @@ void PatientAccount::charge(Charge s) {
     }
 }
 
-double PatientAccount::getTotalChargse() {
+double PatientAccount::getTotalCharges() {
     return totalCharges;
 }
 
@@ -31,12 +31,18 @@ int PatientAccount::getDaysInHospital() {
 }
 
 void PatientAccount::incrementStay(int days) {
-    daysInHospital+=days;
+
+    if (daysInHospital + days > 0) {
+        daysInHospital += days;
+
+        totalCharges += (dailyRate * days);
+    }
 }
+
 
 string PatientAccount::toString() {
     stringstream ss;
 
-    ss << "Name: " << getName() << "\nDays Stayed: " << getDaysInHospital() << "\nTotal Charges: " << getTotalChargse();
+    ss << "Name: " << getName() << "\nDays Stayed: " << getDaysInHospital() << "\nTotal Charges: " << getTotalCharges();
     return ss.str();
 }

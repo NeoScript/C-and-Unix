@@ -47,6 +47,7 @@ const Charge Surgery::LASIK("Lasik", 1200);
 const Charge Surgery::HIP_REPLACEMENT("Hip Replacement", 1200);
 const Charge Surgery::PLASTIC_SURGERY("Plastic Surgery", 800);
 
+// Make sure to add any Charges here, so that is accessible
 const vector<Charge> Surgery::surgeryList = {KIDNEY_TRANSPLANT, HEART_BYPASS, LASIK, HIP_REPLACEMENT, PLASTIC_SURGERY};
 
 #endif //PROGRAM3_SURGERY_H

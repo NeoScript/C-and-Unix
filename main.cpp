@@ -2,6 +2,8 @@
 #include <vector>
 #include "PatientAccount.h"
 #include "Surgery.h"
+#include "Pharmacy.h"
+#include <string>
 
 /**
  * TODO: Group Project
@@ -104,14 +106,63 @@ void workWithPatient() {
                         cin.ignore();
 
                         cout << "Choose one: ";
-                        int input;
-                        cin >> input;
+                        int surgeryChoice;
+                        cin >> surgeryChoice;
 
-                    Surgery::performOperation(Surgery::surgeryList.at(input-1), currPatient);
+                        Surgery::performOperation(Surgery::surgeryList.at(surgeryChoice - 1), currPatient);
                         break;
+                    case 2:
+                        Pharmacy::listMedicines();
+                        cin.ignore();
+
+                        cout <<"Chose one: ";
+                        int medChoice;
+                        cin >>medChoice;
+
+                        Pharmacy::prescribeMedicine(Pharmacy::medicineList.at(medChoice-1), currPatient);
+                        break;
+                    case 3:
+                        cout << "Current Days: " << currPatient.getDaysInHospital() << endl;
+                        cout << "Days to increment (negative numbers remove days): ";
+                        int days;
+
+                        cin>> days;
+
+                        currPatient.incrementStay(days);
+                        break;
+                    case 4:
+                        cout << currPatient.toString() << endl;
+                        break;
+                    case 5:{
+                        cout << "Are you sure you would like to check out -> " << currPatient.getName() << endl;
+                        cout << "Y/n :";
+                        string checkoutChoice;
+
+                        cin.ignore();
+                        getline (cin, checkoutChoice);
+
+                        if(tolower(checkoutChoice.at(0)) == 'y'){
+                            cout << currPatient.toString() << endl;
+                            for(int i = 0; i<patientDataBase.size(); i++){
+                                if(patientDataBase.at(i).getName() == currPatient.getName()){
+                                    patientDataBase.erase(patientDataBase.begin()+i);
+                                }
+                            }
+
+                            return;
+                        }
+                        break;
+                    }
+                    case 6:
+                        break;
+                    default:
+                        cout << "Selection invalid. Try again..." << endl;
+                        break;
+
                 }
-                return;//done working with patient here, so we leave the method without going through the rest of the list without purpose
             }
+            return;//done working with patient here, so we leave the method without continuing through the rest of the list for no reason
+
         }
     }
 
