@@ -201,6 +201,7 @@ int main() {
                 return 0;
             default:
                 cout << "Invalid selection" << endl;
+                selection = 4;
                 break;
         }
     }
