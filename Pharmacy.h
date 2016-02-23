@@ -13,6 +13,10 @@
 
 using namespace std;
 
+/**
+ * The pharmacy class includes constant variables of the Charge class, which will serve as our medications
+ * */
+ 
 class Pharmacy {
 
 public:
