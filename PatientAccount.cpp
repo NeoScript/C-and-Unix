@@ -4,7 +4,11 @@
 
 #include "PatientAccount.h"
 #include <sstream>
-
+/**
+ * The patient account class holds information about the individual patient
+ * It allows for encapuslation of data, so that it is correctly interacted with through methods
+ * */
+ 
 PatientAccount::PatientAccount(string n) {
     name = n;
     totalCharges = 0;
