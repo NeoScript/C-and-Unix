@@ -31,6 +31,8 @@
 
 using namespace std;
 
+//this vector holds all our patient information
+
 vector<PatientAccount> patientDataBase;
 
 /**
@@ -73,8 +75,9 @@ void listPatients() {
     }
 }
 
+//This includes the interface for working with a patient account, gives options and asks user for what they would like to do before guiding them through the options
+
 void workWithPatient() {
-    //TODO: finish writing out menu
 
     string inputName;
     cout << endl;
