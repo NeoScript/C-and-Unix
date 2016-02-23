@@ -9,6 +9,11 @@
 
 #include <string>
 #include <sstream>
+/**
+ * This is the charge class, it holds the information for charges.
+ * It can include a name but it is not required.
+ **/
+ 
 
 class Charge{
 private:
