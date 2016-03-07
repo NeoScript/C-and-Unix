@@ -1,4 +1,5 @@
-#pragma once
+#ifndef FUELGAUGE_H
+#define FUELGAUGE_H
 
 class FuelGauge {
 private:
@@ -10,3 +11,4 @@ public:
 	void decrementFuel();
 };
 
+#endif

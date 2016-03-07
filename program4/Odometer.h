@@ -1,4 +1,5 @@
-#pragma once
+#ifndef ODOMETER_H
+#define ODOMETER_H
 
 #include "FuelGauge.h"
 
@@ -11,3 +12,4 @@ public:
 	int getMileage();
 };
 
+#endif
