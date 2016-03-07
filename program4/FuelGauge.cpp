@@ -29,7 +29,7 @@ void FuelGauge::addFuel()
     {
         cout << "Adding one gallon to the tank. ";
         gallonsOfFuel++;
-        printGallonsOfFuel();
+        printGallonsOfFuel();   //  used for debugging, can be removed
     }
 }
 
@@ -55,6 +55,6 @@ void FuelGauge::removeFuel()
     {
         cout << "Removing one gallon from the tank.";
         gallonsOfFuel--;
-        printGallonsOfFuel();
+        printGallonsOfFuel();   //  used for debugging, can be removed
     }
 }
