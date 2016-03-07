@@ -4,6 +4,7 @@
 class FuelGauge {
 private:
 	int fuel;
+	const static int maxCapacity = 15;
 public:
 	FuelGauge();
 	int getFuel();

@@ -18,7 +18,7 @@ void FuelGauge::decrementFuel() {
 }
 
 void FuelGauge::incrementFuel() {
-	if (fuel < 15) {
+	if (fuel < maxCapacity) {
 		fuel++;
 	} else {
 		std::cout << "Tank is full! Cannot put any more fuel in car." << std::endl;

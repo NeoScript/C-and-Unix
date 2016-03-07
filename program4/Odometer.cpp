@@ -8,13 +8,13 @@ Odometer::Odometer() {
 }
 
 void Odometer::incrementMileage(FuelGauge &gauge) {
-	if (mileage == 999999) {
+	if (mileage == maxMilege) {
 		mileage = 0;
 	} else {
 		mileage++;
 	}
 
-	if (mileage % 24 == 0) {
+	if (mileage % mpg == 0) {
 		gauge.decrementFuel();
 	}
 
