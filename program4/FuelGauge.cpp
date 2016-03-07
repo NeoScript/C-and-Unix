@@ -1,60 +1,27 @@
-#include <iostream>
-using namespace std;
 #include "FuelGauge.h"
+#include <iostream>
 
-void FuelGauge::printGallonsOfFuel()
-{
-    cout << "Gallons of fuel: " << gallonsOfFuel << endl;
+FuelGauge::FuelGauge() {
+	fuel = 0;
 }
 
-void FuelGauge::addFuel()
-{
-    //  fuel tank is already full
-    if (gallonsOfFuel == 15)
-    {
-        cout << "Fuel Tank is full, cannot add more. " << endl;
-        return;
-    }
-    
-    //  adding a gallon of fuel fills up the tank
-    if (gallonsOfFuel + 1 == 15)
-    {
-        cout << "Adding one gallon to the tank. The tank is now full." << endl;
-        gallonsOfFuel++;
-        return;
-    }
-    
-    //  adding a gallon of fuel
-    else
-    {
-        cout << "Adding one gallon to the tank. ";
-        gallonsOfFuel++;
-        printGallonsOfFuel();   //  used for debugging, can be removed
-    }
+int FuelGauge::getFuel() {
+	return fuel;
 }
 
-void FuelGauge::removeFuel()
-{
-    //  fuel tank is already empty
-    if (gallonsOfFuel == 0)
-    {
-        cout << "Fuel Tank is empty. Cannot remove any more. " << endl;
-        return;
-    }
-    
-    //  removing a gallon of fuel depletes the tank
-    if (gallonsOfFuel - 1 == 0)
-    {
-        cout << "Removing one gallon from the tank. The tank is now empty." << endl;
-        gallonsOfFuel--;
-        return;
-    }
-    
-    //  removing a gallon of fuel
-    else
-    {
-        cout << "Removing one gallon from the tank.";
-        gallonsOfFuel--;
-        printGallonsOfFuel();   //  used for debugging, can be removed
-    }
+void FuelGauge::decrementFuel() {
+	if (fuel > 0) {
+		fuel--;
+	} else {
+		std::cout << "Out of fuel! Please fill tank to continue driving." << std::endl;
+	}
 }
+
+void FuelGauge::incrementFuel() {
+	if (fuel < 15) {
+		fuel++;
+	} else {
+		std::cout << "Tank is full! Cannot put any more fuel in car." << std::endl;
+	}
+}
+

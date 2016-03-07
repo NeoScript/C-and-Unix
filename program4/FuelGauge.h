@@ -1,19 +1,12 @@
+#pragma once
 
-#ifndef FuelGauge_h
-#define FuelGauge_h
-class FuelGauge{
+class FuelGauge {
 private:
-    int gallonsOfFuel;
-    
+	int fuel;
 public:
-    FuelGauge()
-    { gallonsOfFuel = 0;}
-    
-    FuelGauge(int gal)
-    { gallonsOfFuel = gal;}
-    void printGallonsOfFuel();
-    void addFuel();
-    void removeFuel();
+	FuelGauge();
+	int getFuel();
+	void incrementFuel();
+	void decrementFuel();
 };
 
-#endif /* FuelGauge_h */
