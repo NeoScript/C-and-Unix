@@ -14,6 +14,7 @@ private:
 	int mileage;
 	const static int maxMileage = 999999; //For variable max milage
 	const static int mpg = 24; //For variable mpg
+
 public:
 	Odometer();
 	void incrementMileage(FuelGauge &gauge);
