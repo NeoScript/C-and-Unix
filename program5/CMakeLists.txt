@@ -3,5 +3,5 @@ project(program5)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
-set(SOURCE_FILES main.cpp)
+set(SOURCE_FILES main.cpp Card.h Deck.h Hand.h)
 add_executable(program5 ${SOURCE_FILES})

@@ -1,0 +1,13 @@
+This assignment requires the use of Course Learning Outcomes 1 through 5.
+Your report should highlight where and how each Course Learning Outcome is employed.
+Write a program to shuffle a regular deck of cards then distribute them to four hands as in the game of Bridge.
+Use the beginning letter of each suit name (Clubs, Diamonds, Hearts, and Spades) or standard symbols in the output.
+Use the numbers 2 through 10 or the beginning letter of the value name (Jack, Queen, King, and Ace) in the output.
+An incomplete sample is shown in the attachment.  Pay special attention to the order and placement of the cards.
+
+
+baisically
+Make a deck of cards that holds 52 unique cards
+Give 13 random cards to 4 people. (no duplicates, since only one deck)
+print out what each person has using that fancy format
+done
