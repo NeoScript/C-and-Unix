@@ -3,3 +3,10 @@
 //
 
 #include "Hand.h"
+
+void Hand::addCard(Card &c) {
+	currHand.push_back(c);
+}
+
+
+

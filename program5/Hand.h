@@ -6,8 +6,14 @@
 #define PROGRAM5_HAND_H
 
 
-class Hand {
+#include <vector>
+#include "Card.h"
 
+class Hand {
+private:
+	vector<Card> currHand;
+public:
+	void addCard(Card &c);
 };
 
 

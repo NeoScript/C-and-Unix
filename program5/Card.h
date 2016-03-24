@@ -6,9 +6,9 @@
 #define PROGRAM5_CARD_H
 
 #include <string>
+using namespace std;
 
 class Card {
-	using namespace std;
 private:
 	string suit;
 	string value;
@@ -17,9 +17,12 @@ public:
 		this->suit = s;
 		this->value = val;
 	};
-	string getSuit();
-	string getValue();
-	string toString();
+	string getSuit(){
+		return this->suit;
+	}
+	string getValue(){
+		return this->value;
+	}
 };
 
 
