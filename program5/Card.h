@@ -18,10 +18,10 @@ public:
 		this->value = val;
 	};
 	string getSuit(){
-		return this->suit;
+		return suit;
 	}
 	string getValue(){
-		return this->value;
+		return value;
 	}
 };
 

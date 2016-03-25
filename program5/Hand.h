@@ -14,6 +14,7 @@ private:
 	vector<Card> currHand;
 public:
 	void addCard(Card &c);
+	string toString();
 };
 
 

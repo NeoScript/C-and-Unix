@@ -6,35 +6,32 @@
 #define PROGRAM5_DECK_H
 
 #include <vector>
+#include <iostream>
 #include "Card.h"
 #include "Hand.h"
 
 using namespace std;
 class Deck {
 private:
-	const string BASE_CARD_ARRAY[13] = {"2", "3", "4", "5", "6",
-	                                  "7", "8", "9", "10",
-	                                  "J", "Q", "K", "A"};
-
-	const string SYMBOL_ARRAY[4] = {HEART_SYMBOL, DIAMOND_SYMBOL,
-	                               SPADE_SYMBOL, CLUB_SYMBOL};
-
-	const string HEART_SYMBOL = "♥";
-	const string DIAMOND_SYMBOL = "♦";
-	const string SPADE_SYMBOL = "♠";
-	const string CLUB_SYMBOL = "♣";
-
 	vector<Card> hearts;
 	vector<Card> diamonds;
 	vector<Card> spades;
 	vector<Card> clubs;
 
 	void initDecks();
-	void dealHand(Hand &h);
+	template <typename T> void remove_at(std::vector<T>& v, typename std::vector<T>::size_type n);
 public:
-	Deck(){
-		initDecks();
-	}
+	static const string HEART_SYMBOL;
+	static const string DIAMOND_SYMBOL;
+	static const string SPADE_SYMBOL;
+	static const string CLUB_SYMBOL;
+
+	static const vector<string> SYMBOL_ARRAY;
+	static const vector<string> BASE_CARD_ARRAY;
+
+	Deck();
+	void dealHand(Hand &h);
+	void printDecks();
 };
 
 

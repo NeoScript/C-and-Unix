@@ -1,11 +1,21 @@
 #include <iostream>
+#include "Deck.h"
 
 using namespace std;
 
 int main() {
-	string name = "pls";
+	Hand handOne, handTwo, handThree, handFour;
+	Deck deck;
 
-	cout <<name<<endl;
-	cout << "Hello, World!" << endl;
+	deck.printDecks();
+	deck.dealHand(handOne);
+	deck.dealHand(handTwo);
+	deck.dealHand(handThree);
+	deck.dealHand(handFour);
+
+	cout << handOne.toString() << endl;
+	cout << handTwo.toString() << endl;
+	cout << handThree.toString() << endl;
+	cout << handFour.toString() << endl;
 	return 0;
 }
