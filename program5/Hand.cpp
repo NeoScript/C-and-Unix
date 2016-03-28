@@ -30,8 +30,6 @@ void Hand::addCard(Card &c) {
  *Summary:
  *Arguments:
  */
-string Hand::toString(){
-	string s;
 vector<Card> Hand::getCardsOfSuit(std::string suit) {
 	vector<Card> list;
 	for(Card &curr:currHand){
