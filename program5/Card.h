@@ -20,7 +20,7 @@ private:
 	string suit;
 	string value;
 public:
-	Card(string s, string val){
+	Card(string s, string val) {
 		this->suit = s;
 		this->value = val;
 	};

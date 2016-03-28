@@ -16,10 +16,11 @@
 #include <sstream>
 #include <string>
 #include <iostream>
-#include <opencv/highgui.h>
-#include <opencv/cv.h>
+#include <highgui.h>
+#include <cv.hpp>
 
 using namespace cv;
+
 //initial min and max HSV filter values.
 //these will be changed using trackbars
 int H_MIN = 0;
@@ -37,11 +38,11 @@ const int MAX_NUM_OBJECTS=50;
 const int MIN_OBJECT_AREA = 20*20;
 const int MAX_OBJECT_AREA = FRAME_HEIGHT*FRAME_WIDTH/1.5;
 //names that will appear at the top of each window
-const string windowName = "Original Image";
-const string windowName1 = "HSV Image";
-const string windowName2 = "Thresholded Image";
-const string windowName3 = "After Morphological Operations";
-const string trackbarWindowName = "Trackbars";
+const std::string windowName = "Original Image";
+const std::string windowName1 = "HSV Image";
+const std::string windowName2 = "Thresholded Image";
+const std::string windowName3 = "After Morphological Operations";
+const std::string trackbarWindowName = "Trackbars";
 void on_trackbar( int, void* )
 {//This function gets called whenever a
 	// trackbar position is changed
@@ -51,7 +52,7 @@ void on_trackbar( int, void* )
 
 
 }
-string intToString(int number){
+std::string intToString(int number){
 
 
 	std::stringstream ss;
@@ -134,9 +135,9 @@ void trackFilteredObject(int &x, int &y, Mat threshold, Mat &cameraFeed){
 
 	Mat temp;
 	threshold.copyTo(temp);
-	//these two vectors needed for output of findContours
-	vector< vector<Point> > contours;
-	vector<Vec4i> hierarchy;
+	//these two std::vectors needed for output of findContours
+	std::vector< std::vector<Point> > contours;
+	std::vector<Vec4i> hierarchy;
 	//find contours of filtered image using openCV findContours function
 	findContours(temp,contours,hierarchy,CV_RETR_CCOMP,CV_CHAIN_APPROX_SIMPLE );
 	//use moments method to find our filtered object
