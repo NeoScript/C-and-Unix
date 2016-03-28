@@ -1,7 +1,13 @@
 //
 // Created by nasir on 3/23/16.
 //
-
+/**
+ *Filename:
+ *Author:
+ *Classes/Procedures:
+ *		-Classes:
+ *			1)Hand:
+ */
 #ifndef PROGRAM5_HAND_H
 #define PROGRAM5_HAND_H
 

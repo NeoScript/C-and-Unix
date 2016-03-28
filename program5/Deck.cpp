@@ -2,6 +2,18 @@
 // Created by nasir on 3/23/16.
 //
 
+/**
+ *Filename: Deck.cpp
+ *Author:
+ *Classes/Procedures:
+ *		-Classes:
+ *				1) Deck: Class that contains the Cards in a deck.
+ *		-Procedures:
+ *				1)initDecks():
+ *				2)dealHand():
+ * 			3)remove_at():
+ * 			4)printDecks():
+ */
 #include "Deck.h"
 
 Deck::Deck(){
@@ -21,6 +33,12 @@ const vector<string> Deck::BASE_CARD_ARRAY = {"2", "3", "4", "5", "6",
 const vector<string> Deck::SYMBOL_ARRAY = {HEART_SYMBOL, DIAMOND_SYMBOL,
                                            SPADE_SYMBOL, CLUB_SYMBOL};
 
+ /**
+  *Class/Procedure name:
+  *Author:
+  *Summary:
+  *Arguments:
+  */
 void Deck::initDecks() {
 	vector<Card> *currVector = nullptr;
 
@@ -55,6 +73,12 @@ void Deck::initDecks() {
 	}
 }
 
+/**
+ *Class/Procedure name:
+ *Author:
+ *Summary:
+ *Arguments:
+ */
 void Deck::dealHand(Hand &h) {
 	for (int i = 0; i < 13; i++) {
 		int randomDeck = rand() % 4;
@@ -99,12 +123,24 @@ void Deck::dealHand(Hand &h) {
 	}
 }
 
+/**
+ *Class/Procedure name:
+ *Author:
+ *Summary:
+ *Arguments:
+ */
 template<typename T>
 void Deck::remove_at(std::vector<T> &v, typename std::vector<T>::size_type n) {
 	std::swap(v[n], v.back());
 	v.pop_back();
 }
 
+/**
+ *Class/Procedure name:
+ *Author:
+ *Summary:
+ *Arguments:
+ */
 void Deck::printDecks() {
 	cout << hearts.size() << endl;
 	cout << diamonds.size() << endl;
@@ -142,4 +178,3 @@ void Deck::printDecks() {
 	cout << endl;
 
 }
-

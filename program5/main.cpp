@@ -1,8 +1,21 @@
+/**
+ *Filename:
+ *Author:
+ *Classes/Procedures:
+ *		Procedures:
+ *			1)main():
+ */
 #include <iostream>
 #include "Deck.h"
 
 using namespace std;
 
+/**
+ *Class/Procedure name:
+ *Author:
+ *Summary:
+ *Arguments:
+ */
 int main() {
 	Hand handOne, handTwo, handThree, handFour;
 	Deck deck;
