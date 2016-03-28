@@ -12,9 +12,10 @@
 class Hand {
 private:
 	vector<Card> currHand;
+	void sortHand(vector<Card> &list);
 public:
 	void addCard(Card &c);
-	string toString();
+	vector<Card> getCardsOfSuit(std::string suit);
 };
 
 

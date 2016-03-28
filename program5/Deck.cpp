@@ -50,12 +50,14 @@ void Deck::initDecks() {
 		}
 
 		for (int j = 0; j<BASE_CARD_ARRAY.size(); j++){
-			currVector->push_back(Card(suit, BASE_CARD_ARRAY.at(j)));
+			currVector->push_back(Card(suit, BASE_CARD_ARRAY[j]));
 		}
 	}
 }
 
 void Deck::dealHand(Hand &h) {
+	srand(time(0));//seeds the random number generator
+
 	for (int i = 0; i < 13; i++) {
 		int randomDeck = rand() % 4;
 		vector<Card> *currVector = nullptr;
@@ -78,9 +80,8 @@ void Deck::dealHand(Hand &h) {
 				return;
 		}
 
-		int randomIndex = 0;
-		//TODO:make it include all indexes
-		//Currently it is not including three elements
+
+		unsigned long randomIndex = 0;
 		if (currVector->size() > 0) {
 			randomIndex = rand() % currVector->size();
 			h.addCard(currVector->at(randomIndex));
@@ -96,9 +97,11 @@ void Deck::dealHand(Hand &h) {
 			h.addCard(currVector->at(0));
 			remove_at(*currVector, 0);
 		}
+
 	}
 }
 
+//thank you stack exchange
 template<typename T>
 void Deck::remove_at(std::vector<T> &v, typename std::vector<T>::size_type n) {
 	std::swap(v[n], v.back());

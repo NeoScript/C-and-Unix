@@ -6,8 +6,26 @@ Use the numbers 2 through 10 or the beginning letter of the value name (Jack, Qu
 An incomplete sample is shown in the attachment.  Pay special attention to the order and placement of the cards.
 
 
-baisically
+basically
 Make a deck of cards that holds 52 unique cards
 Give 13 random cards to 4 people. (no duplicates, since only one deck)
 print out what each person has using that fancy format
 done
+
+
+		    ♠	J
+		    ♥	9 6 4
+		    ♦	J 6 4
+		    ♣	7 4
+♠	-		    	    ♠	-
+♥	A Q			        ♥	K x x
+♦	Q x x			    ♦	K x
+♣	Q J x x			    ♣	10 x x x
+
+		    ♠
+		    ♥	J 10 8 5 3
+	    	♦	7
+    		♣	A K 8
+
+- implies the lack of cards in a suit.
+x implies an unknow card value.
