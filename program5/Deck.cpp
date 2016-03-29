@@ -33,10 +33,10 @@ vector<Suit*> Deck::SYMBOL_ARRAY = {HEART_SYMBOL, DIAMOND_SYMBOL,
                                            SPADE_SYMBOL, CLUB_SYMBOL};
 
  /**
-  *Class/Procedure name:
-  *Author:
-  *Summary:
-  *Arguments:
+  *Class/Procedure name: initDecks
+  *Author: Nasir
+  *Summary: initializes the deck by going through the base card array and filling each vector of suits with the appropriate cards
+  *Arguments: none
   */
 void Deck::initDecks() {
 	vector<Card> *currVector = nullptr;
@@ -73,10 +73,10 @@ void Deck::initDecks() {
 }
 
 /**
- *Class/Procedure name:
- *Author:
- *Summary:
- *Arguments:
+ *Class/Procedure name: dealHand
+ *Author: Nasir
+ *Summary: deals 13 random cards from the deck to a hand
+ *Arguments: address to hand
  */
 void Deck::dealHand(Hand &h) {
 	srand(time(0));//seeds the random number generator
@@ -125,12 +125,11 @@ void Deck::dealHand(Hand &h) {
 }
 
 /**
- *Class/Procedure name:
- *Author:
- *Summary:
- *Arguments:
+ *Class/Procedure name: remove_at
+ *Author: some dude on stack exchange
+ *Summary: removes object at a given place on the vector
+ *Arguments: vector, its position in vector
  */
-
 //thank you stack exchange
 
 template<typename T>
