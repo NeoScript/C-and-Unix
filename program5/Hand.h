@@ -21,7 +21,7 @@ private:
 	void sortHand(vector<Card> &list);
 public:
 	void addCard(Card &c);
-	vector<Card> getCardsOfSuit(std::string suit);
+	vector<Card> getCardsOfSuit(Suit *suit);
 };
 
 

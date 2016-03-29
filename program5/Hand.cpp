@@ -30,10 +30,10 @@ void Hand::addCard(Card &c) {
  *Summary:
  *Arguments:
  */
-vector<Card> Hand::getCardsOfSuit(std::string suit) {
+vector<Card> Hand::getCardsOfSuit(Suit *suit) {
 	vector<Card> list;
 	for(Card &curr:currHand){
-		if(curr.getSuit()==suit){
+		if(curr.getSuit()->getString()==suit->getString()){
 			list.push_back(curr);
 		}
 	}

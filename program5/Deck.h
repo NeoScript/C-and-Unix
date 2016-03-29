@@ -26,12 +26,12 @@ private:
 	void initDecks();
 	template <typename T> void remove_at(std::vector<T>& v, typename std::vector<T>::size_type n);
 public:
-	static const string HEART_SYMBOL;
-	static const string DIAMOND_SYMBOL;
-	static const string SPADE_SYMBOL;
-	static const string CLUB_SYMBOL;
+	static Suit * HEART_SYMBOL;
+	static Diamond *DIAMOND_SYMBOL;
+	static Spade * SPADE_SYMBOL;
+	static Club * CLUB_SYMBOL;
 
-	static const vector<string> SYMBOL_ARRAY;
+	static vector<Suit*> SYMBOL_ARRAY;
 	static const vector<string> BASE_CARD_ARRAY;
 
 	Deck();

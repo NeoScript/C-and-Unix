@@ -21,16 +21,16 @@ Deck::Deck(){
 }
 
 
-const string Deck::HEART_SYMBOL("♥");
-const string Deck::DIAMOND_SYMBOL("♦");
-const string Deck::SPADE_SYMBOL("♠");
-const string Deck::CLUB_SYMBOL("♣");
+Suit * Deck::HEART_SYMBOL = new Heart();
+Diamond * Deck::DIAMOND_SYMBOL = new Diamond();
+Spade * Deck::SPADE_SYMBOL = new Spade();
+Club * Deck::CLUB_SYMBOL = new Club();
 
 const vector<string> Deck::BASE_CARD_ARRAY = {"2", "3", "4", "5", "6",
                                               "7", "8", "9", "10",
                                               "J", "Q", "K", "A"};
 
-const vector<string> Deck::SYMBOL_ARRAY = {HEART_SYMBOL, DIAMOND_SYMBOL,
+vector<Suit*> Deck::SYMBOL_ARRAY = {HEART_SYMBOL, DIAMOND_SYMBOL,
                                            SPADE_SYMBOL, CLUB_SYMBOL};
 
  /**
@@ -42,25 +42,25 @@ const vector<string> Deck::SYMBOL_ARRAY = {HEART_SYMBOL, DIAMOND_SYMBOL,
 void Deck::initDecks() {
 	vector<Card> *currVector = nullptr;
 
-	string suit;
+	Suit *suit;
 
 	for(int i =0; i<SYMBOL_ARRAY.size(); i++){
 		switch (i){
 			case 0:
 				currVector = &hearts;
-				suit = HEART_SYMBOL;
+				suit = new Heart();
 				break;
 			case 1:
 				currVector = &diamonds;
-				suit = DIAMOND_SYMBOL;
+				suit = new Diamond();
 				break;
 			case 2:
 				currVector = &spades;
-				suit = SPADE_SYMBOL;
+				suit = new Spade();
 				break;
 			case 3:
 				currVector = &clubs;
-				suit = CLUB_SYMBOL;
+				suit = new Club();
 				break;
 			default:
 				cout << "Fail" << endl;
@@ -138,48 +138,4 @@ template<typename T>
 void Deck::remove_at(std::vector<T> &v, typename std::vector<T>::size_type n) {
 	std::swap(v[n], v.back());
 	v.pop_back();
-}
-
-/**
- *Class/Procedure name:
- *Author:
- *Summary:
- *Arguments:
- */
-void Deck::printDecks() {
-	cout << hearts.size() << endl;
-	cout << diamonds.size() << endl;
-	cout << spades.size() << endl;
-	cout << clubs.size() << endl;
-
-
-	string s;
-
-	vector<Card> *currHand = nullptr;
-	currHand = &hearts;
-	for(int i = 0; i<currHand->size(); i++){
-		cout <<" "+currHand->at(i).getSuit() + currHand->at(i).getValue();
-	}
-	cout<< endl;
-
-	currHand = &diamonds;
-	for(int i = 0; i<currHand->size(); i++){
-		cout << " "+currHand->at(i).getSuit() + currHand->at(i).getValue();
-	}
-	cout<< endl;
-
-	currHand = &spades;
-	for(int i = 0; i<currHand->size(); i++){
-		cout<< " "+currHand->at(i).getSuit() + currHand->at(i).getValue();
-	}
-	cout<< endl;
-
-	currHand = &clubs;
-	for(int i = 0; i<currHand->size(); i++){
-		cout << " "+currHand->at(i).getSuit() + currHand->at(i).getValue();
-	}
-	cout << endl;
-
-	cout << endl;
-
 }

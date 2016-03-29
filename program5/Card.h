@@ -13,18 +13,20 @@
 #define PROGRAM5_CARD_H
 
 #include <string>
+#include "Suit.h"
+
 using namespace std;
 
 class Card {
 private:
-	string suit;
+	Suit *suit;
 	string value;
 public:
-	Card(string s, string val) {
+	Card(Suit *s, string val) {
 		this->suit = s;
 		this->value = val;
 	};
-	string getSuit(){
+	Suit* getSuit(){
 		return suit;
 	}
 	string getValue(){

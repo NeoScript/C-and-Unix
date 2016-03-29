@@ -17,8 +17,8 @@ using namespace std;
  *Arguments:
  */
 
-string makeOutputLine(vector<Card> list, string suit){
-	string s = suit+"\t";
+string makeOutputLine(vector<Card> list, Suit *suit){
+	string s = suit->getString()+"\t";
 	if(list.empty()){
 		s += "-";
 	}else{
@@ -49,21 +49,21 @@ int main() {
 	deck.dealHand(handFour);
 
 	//HAND ONE
-	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(Deck::SPADE_SYMBOL), Deck::SPADE_SYMBOL).c_str());
-	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(Deck::HEART_SYMBOL), Deck::HEART_SYMBOL).c_str());
-	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(Deck::DIAMOND_SYMBOL), Deck::DIAMOND_SYMBOL).c_str());
-	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(Deck::CLUB_SYMBOL), Deck::CLUB_SYMBOL).c_str());
+	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(new Spade), new Spade).c_str());
+	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(new Heart), new Heart).c_str());
+	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(new Diamond), new Diamond).c_str());
+	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(new Club), new Club).c_str());
 
 	//HANDS TWO & THREE
-	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(Deck::SPADE_SYMBOL), Deck::SPADE_SYMBOL).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(Deck::SPADE_SYMBOL), Deck::SPADE_SYMBOL).c_str());
-	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(Deck::HEART_SYMBOL), Deck::HEART_SYMBOL).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(Deck::HEART_SYMBOL), Deck::HEART_SYMBOL).c_str());
-	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(Deck::DIAMOND_SYMBOL), Deck::DIAMOND_SYMBOL).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(Deck::DIAMOND_SYMBOL), Deck::DIAMOND_SYMBOL).c_str());
-	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(Deck::CLUB_SYMBOL), Deck::CLUB_SYMBOL).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(Deck::CLUB_SYMBOL), Deck::CLUB_SYMBOL).c_str());
+	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(new Spade), new Spade).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(new Spade), new Spade).c_str());
+	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(new Heart), new Heart).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(new Heart), new Heart).c_str());
+	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(new Diamond), new Diamond).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(new Diamond), new Diamond).c_str());
+	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(new Club), new Club).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(new Club), new Club).c_str());
 
 	//HAND FOUR
 	printf("%-20s %-20s\n", "", makeOutputLine(handFour.getCardsOfSuit(Deck::SPADE_SYMBOL), Deck::SPADE_SYMBOL).c_str());
-	printf("%-20s %-20s\n", "", makeOutputLine(handFour.getCardsOfSuit(Deck::HEART_SYMBOL), Deck::HEART_SYMBOL).c_str());
-	printf("%-20s %-20s\n", "", makeOutputLine(handFour.getCardsOfSuit(Deck::DIAMOND_SYMBOL), Deck::DIAMOND_SYMBOL).c_str());
-	printf("%-20s %-20s\n", "", makeOutputLine(handFour.getCardsOfSuit(Deck::CLUB_SYMBOL), Deck::CLUB_SYMBOL).c_str());
+	printf("%-20s %-20s\n", "", makeOutputLine(handFour.getCardsOfSuit(new Heart), new Heart).c_str());
+	printf("%-20s %-20s\n", "", makeOutputLine(handFour.getCardsOfSuit(new Diamond), new Diamond).c_str());
+	printf("%-20s %-20s\n", "", makeOutputLine(handFour.getCardsOfSuit(new Club), new Club).c_str());
 	return 0;
 }
