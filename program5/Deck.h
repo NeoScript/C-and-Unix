@@ -3,9 +3,12 @@
 //
 
 /**
- *Filename:
- *Author:
+ *Filename: Deck.h
+ *Author: Nasir
  *Classes/Procedures:
+ *	Deck() -> constructor
+ * 	initDecks() -> adds the decks to the appropriate vector of cards
+ * 	dealHand() -> deals 13 cards to given hand
  */
 #ifndef PROGRAM5_DECK_H
 #define PROGRAM5_DECK_H
@@ -36,7 +39,6 @@ public:
 
 	Deck();
 	void dealHand(Hand &h);
-	void printDecks();
 };
 
 
