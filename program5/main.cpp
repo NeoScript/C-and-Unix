@@ -1,9 +1,9 @@
 /**
- *Filename:
- *Author:
+ *Filename: main.cpp
+ *Author: Nasir
  *Classes/Procedures:
  *		Procedures:
- *			1)main():
+ *			1)main(): the main function...
  */
 #include <iostream>
 #include "Deck.h"
@@ -11,10 +11,10 @@
 using namespace std;
 
 /**
- *Class/Procedure name:
- *Author:
- *Summary:
- *Arguments:
+ *Class/Procedure name: makeOutputLine
+ *Author: Nasir
+ *Summary: Creates the correct output string for the cards of a given suit within the list
+ *Arguments: list of cards of suit x, suit x
  */
 
 string makeOutputLine(vector<Card> list, Suit *suit){
@@ -32,12 +32,11 @@ string makeOutputLine(vector<Card> list, Suit *suit){
 
 
 /**
- *Class/Procedure name:
- *Author:
- *Summary:
- *Arguments:
+ *Class/Procedure name: main
+ *Author: Nasir
+ *Summary: runs the whole program
+ *Arguments: none
  */
-//TODO: final step is to output in the right order (make them split into 4 sections like the example)
 
 int main() {
 	Hand handOne, handTwo, handThree, handFour;
