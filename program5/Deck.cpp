@@ -4,15 +4,14 @@
 
 /**
  *Filename: Deck.cpp
- *Author:
+ *Author: Nasir
  *Classes/Procedures:
  *		-Classes:
  *				1) Deck: Class that contains the Cards in a deck.
  *		-Procedures:
- *				1)initDecks():
- *				2)dealHand():
- * 			3)remove_at():
- * 			4)printDecks():
+ *				1)initDecks(): initializes the deck by adding cards of all suits and values
+ *				2)dealHand(): fills a hand with 13 cards
+ * 			3)remove_at(): helper method in order to remove a card at a certain spot in the vector
  */
 #include "Deck.h"
 
