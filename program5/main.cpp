@@ -54,8 +54,6 @@ int main() {
 	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(Deck::DIAMOND_SYMBOL), Deck::DIAMOND_SYMBOL).c_str());
 	printf("%-20s %-20s\n", "", makeOutputLine(handOne.getCardsOfSuit(Deck::CLUB_SYMBOL), Deck::CLUB_SYMBOL).c_str());
 
-	cout << endl;
-
 	//HANDS TWO & THREE
 	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(Deck::SPADE_SYMBOL), Deck::SPADE_SYMBOL).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(Deck::SPADE_SYMBOL), Deck::SPADE_SYMBOL).c_str());
 	printf("%-20s %20s %-20s\n", makeOutputLine(handTwo.getCardsOfSuit(Deck::HEART_SYMBOL), Deck::HEART_SYMBOL).c_str(), "", makeOutputLine(handThree.getCardsOfSuit(Deck::HEART_SYMBOL), Deck::HEART_SYMBOL).c_str());
