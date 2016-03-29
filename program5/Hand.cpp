@@ -4,11 +4,11 @@
 
 /**
  *Filename: Hand.cpp
- *Author:
+ *Author: Nasir
  *Classes/Procedures:
  *		-Procedures:
- *			1)addCard():
- *			2)toString():
+ *			1)addCard()
+ *			2)toString()
  */
 #include "Hand.h"
 #include <iostream>
@@ -16,19 +16,19 @@
 
 /**
  *Class/Procedure name: addCard
- *Author:
- *Summary:
- *Arguments:
+ *Author: Nasir
+ *Summary: adds a given card to the hand
+ *Arguments: address of card
  */
 void Hand::addCard(Card &c) {
 	currHand.push_back(c);
 }
 
 /**
- *Class/Procedure name: toString
- *Author:
- *Summary:
- *Arguments:
+ *Class/Procedure name: getCardsOfSuit
+ *Author: Nasir
+ *Summary: returns a vector of cards containing cards of a specific suit
+ *Arguments: the suit of cards you want back
  */
 vector<Card> Hand::getCardsOfSuit(Suit *suit) {
 	vector<Card> list;
@@ -45,9 +45,9 @@ vector<Card> Hand::getCardsOfSuit(Suit *suit) {
 
 /**
  *Class/Procedure name: sortHand
- *Author:
- *Summary:
- *Arguments:
+ *Author: Nasir
+ *Summary: sorts the hand in the correct output format (facecards first then goes down from 10 to 2)
+ *Arguments: vector of cards
  */
 void Hand::sortHand(vector<Card> &list) {
 	vector<Card> temp;
