@@ -1,0 +1,27 @@
+Write a program which allows users to place and read messages on a remote server.
+The program should require users to register (i.e., establish a username and password).
+Passwords must be stored and compared in an encrypted manner.
+Users must sign in prior to using the system.
+
+A user should be able to:
+
+        View a list of other users.
+        Request a partnership with another user.
+        View partner requests.
+        Accept or reject partner requests.
+        View a list of partners.
+        Send deposit messages for a partner.
+        View messages between a partner.
+        Messages must be date-time stamped.
+
+Messages may be stored in a fixed length structure; however, they must then be rebuilt into complete messages when displayed.
+Multiple users must be able to use the system simultaneously.
+Communication between the client and server should be via TCP/IP sockets.
+The program must exhibit the features represented by the entirety of the course learning outcomes.
+The report must indicate which features are associated with which course learning outcome.
+The report must also establish the test environment: a collection of Ubuntu 15.10 VMs within a single hypervisor is the preferred mechanism.
+
+useful links:
+
+http://www.linuxhowtos.org/C_C++/socket.htm
+chapter 16 in this book: http://proquest.safaribooksonline.com/book/programming/unix/9780321638014
