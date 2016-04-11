@@ -2,7 +2,6 @@ Write a program which allows users to place and read messages on a remote server
 The program should require users to register (i.e., establish a username and password).
 Passwords must be stored and compared in an encrypted manner.
 Users must sign in prior to using the system.
-
 A user should be able to:
 
         View a list of other users.
