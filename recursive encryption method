@@ -1,0 +1,7 @@
+string encryptPassword(string password){
+
+    if (password.length() == 1) 
+        return password;
+    else
+        return encryptPassword(password.substr(1,password.length())) + password.at(0);
+}
