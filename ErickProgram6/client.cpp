@@ -28,28 +28,44 @@ void startSocket(char* ip, char* msg, char* port){
 	
 	std::cout << "Connect()ing..." << std::endl;
 	status = connect(socketfd, host_info_list->ai_addr, host_info_list->ai_addrlen);
-	if (status == -1) std::cout << "connect error" ;
+	if (status == -1) 
+		std::cout << "connect error";
+	else
+		cout << "Connection Established" << endl;
 	
-	std::cout << "send()ing message..." << std::endl;
-
-	int len;
-	ssize_t bytes_sent;
-	len = strlen(msg);
-	bytes_sent = send(socketfd, msg, len, 0);
-	
-	std::cout << "Waiting to receive data..." << std::endl;
-	ssize_t bytes_received;
-	char incoming_data_buffer[1000];
-	bytes_received = recv(socketfd, incoming_data_buffer,1000,0);
-	if (bytes_received==0) std::cout << "host shut down." << std::endl;
-	if (bytes_received==-1) std::cout << "receive error." << std::endl;
-	std::cout << bytes_received << " bytes received: " << std::endl;
-	incoming_data_buffer[bytes_received] = '\0';
-	std::cout << incoming_data_buffer << std::endl;
+	while (true) {
+		
+		const char * startMenu = "Login Menu: \n\t"
+								 "1) Sign-in\n\t2)Register\n\n";
+		std::cout << startMenu << std::endl;
+		char userInput[] = "";
+		std::cin >> userInput;
+		
+		int len;
+		ssize_t bytes_sent;
+		len = strlen(userInput);
+		
+		if(len != 1){
+			cout << "Invalid input: len = " << len << endl;
+			continue;
+		}
+		bytes_sent = send(socketfd, userInput, len, 0);
+		
+		std::cout << "Waiting to receive data..." << std::endl;
+		ssize_t bytes_received;
+		char incoming_data_buffer[1000];
+		bytes_received = recv(socketfd, incoming_data_buffer,1000,0);
+		if (bytes_received==0) std::cout << "host shut down." << std::endl;
+		if (bytes_received==-1) std::cout << "receive error." << std::endl;
+		std::cout << bytes_received << " bytes received: " << std::endl;
+		incoming_data_buffer[bytes_received] = '\0';
+		std::cout << incoming_data_buffer << std::endl;
+		//std::cout << socketfd << std::endl;
+		//close(socketfd);
+	}
 	std::cout << "Receving complete. Closing socket..." << std::endl;
 	freeaddrinfo(host_info_list);
-	//std::cout << socketfd << std::endl;
-	//close(socketfd);
+	
 } 
 
 int main(int argc, char* argv[]) {

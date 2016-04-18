@@ -3,6 +3,7 @@
 #include <cstring>      // Needed for memset
 #include <sys/socket.h> // Needed for the socket functions
 #include <netdb.h>      // Needed for the socket functions
+#include <string>
 
 int main()
 {
@@ -52,35 +53,38 @@ int main()
     int new_sd;
     struct sockaddr_storage their_addr;
     socklen_t addr_size = sizeof(their_addr);
-    new_sd = accept(socketfd, (struct sockaddr *)&their_addr, &addr_size);
-    if (new_sd == -1)
-    {
-        std::cout << "listen error" << std::endl ;
-    }
-    else
-    {
-        std::cout << "Connection accepted. Using new socketfd : "  <<  new_sd << std::endl;
-    }
+    
+		new_sd = accept(socketfd, (struct sockaddr *)&their_addr, &addr_size);
+		if (new_sd == -1)
+		{
+			std::cout << "listen error" << std::endl ;
+		}
+		else
+		{
+			std::cout << "Connection accepted. Using new socketfd : "  <<  new_sd << std::endl;
+		}
+
+	while (true) {
+		std::cout << "Waiting to recieve data..."  << std::endl;
+		ssize_t bytes_recieved;
+		char incomming_data_buffer[1000];
+		bytes_recieved = recv(new_sd, incomming_data_buffer,1000, 0);
+		// If no data arrives, the program will just wait here until some data arrives.
+		if (bytes_recieved == 0) std::cout << "host shut down." << std::endl ;
+		if (bytes_recieved == -1)std::cout << "recieve error!" << std::endl ;
+		std::cout << bytes_recieved << " bytes recieved :" << std::endl ;
+		incomming_data_buffer[bytes_recieved] = '\0';
+		std::cout << incomming_data_buffer << std::endl;
 
 
-    std::cout << "Waiting to recieve data..."  << std::endl;
-    ssize_t bytes_recieved;
-    char incomming_data_buffer[1000];
-    bytes_recieved = recv(new_sd, incomming_data_buffer,1000, 0);
-    // If no data arrives, the program will just wait here until some data arrives.
-    if (bytes_recieved == 0) std::cout << "host shut down." << std::endl ;
-    if (bytes_recieved == -1)std::cout << "recieve error!" << std::endl ;
-    std::cout << bytes_recieved << " bytes recieved :" << std::endl ;
-    incomming_data_buffer[bytes_recieved] = '\0';
-    std::cout << incomming_data_buffer << std::endl;
-
-
-    std::cout << "send()ing back a message..."  << std::endl;
-    const char *msg = "thank you.";
-    int len;
-    ssize_t bytes_sent;
-    len = strlen(msg);
-    bytes_sent = send(new_sd, msg, len, 0);
+		std::cout << "send()ing back a message..."  << std::endl;
+		const char *msg = "thank you.";
+		int len;
+		ssize_t bytes_sent;
+		len = strlen(msg);
+		bytes_sent = send(new_sd, msg, len, 0);
+	}
+    
 
     std::cout << "Stopping server..." << std::endl;
     freeaddrinfo(host_info_list);
@@ -88,7 +92,6 @@ int main()
     //close(socketfd);
 
 return 0 ;
-
 
 }
 
