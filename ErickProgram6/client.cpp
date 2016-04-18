@@ -82,7 +82,7 @@ int main(int argc, char* argv[]) {
 	//char ip[] = "216.58.195.46";
 	//char msg[] = "GET / HTTP/1.1\nhost: www.google.com\n\n";
 	//char port[] = "80";
-	char ip[] = "10.0.2.15";
+	char ip[] = "10.21.42.25";
 	char msg[] = "GET / HTTP/1.1\nhost: www.google.com\n\n";
 	char port[] = "5555";
 	startSocket(ip,msg, port);
