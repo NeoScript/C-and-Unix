@@ -1,3 +1,4 @@
+//  recursively encrypt the user password 
 string encryptPassword(string password){
 
     if (password.length() == 1) 
