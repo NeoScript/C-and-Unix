@@ -1,0 +1,75 @@
+#include <iostream>
+#include <cstring>
+#include <sys/socket.h>
+#include <netdb.h>
+
+using namespace std;
+void startSocket(char* ip, char* msg, char* port){
+	int status;
+	struct addrinfo host_info;
+	struct addrinfo *host_info_list;
+	
+	memset(&host_info, 0 , sizeof host_info);
+	
+	std::cout << "Setting up the structs..." << std::endl;
+	
+	host_info.ai_family = AF_UNSPEC;
+	host_info.ai_socktype = SOCK_STREAM;
+	
+	status = getaddrinfo(ip, port, &host_info, &host_info_list);
+	
+	if(status!=0) std::cout << "getaddrinfo error" << gai_strerror(status);
+	
+	std::cout << "Creating a socket..." << std::endl;
+	int socketfd;
+	socketfd = socket(host_info_list->ai_family, host_info_list->ai_socktype,
+					  host_info_list->ai_protocol);
+	if(socketfd == -1) std::cout << "socket error ";
+	
+	std::cout << "Connect()ing..." << std::endl;
+	status = connect(socketfd, host_info_list->ai_addr, host_info_list->ai_addrlen);
+	if (status == -1) std::cout << "connect error" ;
+	
+	std::cout << "send()ing message..." << std::endl;
+
+	int len;
+	ssize_t bytes_sent;
+	len = strlen(msg);
+	bytes_sent = send(socketfd, msg, len, 0);
+	
+	std::cout << "Waiting to receive data..." << std::endl;
+	ssize_t bytes_received;
+	char incoming_data_buffer[1000];
+	bytes_received = recv(socketfd, incoming_data_buffer,1000,0);
+	if (bytes_received==0) std::cout << "host shut down." << std::endl;
+	if (bytes_received==-1) std::cout << "receive error." << std::endl;
+	std::cout << bytes_received << " bytes received: " << std::endl;
+	incoming_data_buffer[bytes_received] = '\0';
+	std::cout << incoming_data_buffer << std::endl;
+	std::cout << "Receving complete. Closing socket..." << std::endl;
+	freeaddrinfo(host_info_list);
+	//std::cout << socketfd << std::endl;
+	//close(socketfd);
+} 
+
+int main(int argc, char* argv[]) {
+	const char * mainMenu = "Main Menu: \n\t"
+							"1)View Users\n\t2)Request Partnership\n\t"
+							"3)View Partner Requests\n\t4)Accept or"
+							"Reject Partner Request\n\t5)View a list"
+							" of partners\n\t6)Send deposit message for a partner"
+							"\n\t7)View messages between partners";
+	cout << mainMenu << endl;
+	//char userInput;
+	//cin >> userInput;
+	//cout << userInput << endl;
+	//char ip[] = "216.58.195.46";
+	//char msg[] = "GET / HTTP/1.1\nhost: www.google.com\n\n";
+	//char port[] = "80";
+	char ip[] = "10.0.2.15";
+	char msg[] = "GET / HTTP/1.1\nhost: www.google.com\n\n";
+	char port[] = "5555";
+	startSocket(ip,msg, port);
+	
+	return 0;
+}
