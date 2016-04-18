@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 /*
 * Filename: Messages.cpp
 * Author: Chris Rodriguez
@@ -8,8 +6,7 @@
 *                       getMessage, returns message and stamp in a nice format
 */
 
-#include <ctime>
-#include <string>
+
 #include "Message.h"
 
 /*
@@ -22,9 +19,12 @@ void Message::getStamp()
 	// Neatly displays time in a string format
 	time_t rawtime;
 	time(&rawtime);
-	char str[26];
-	ctime_s(str, sizeof str, &rawtime);
-	stamp = str;
+	
+	#ifdef __STDC_LIB_EXT1__
+		char str[26];
+		ctime_s(str, sizeof str, &rawtime);
+		stamp = str;
+	#endif
 }
 
 /*

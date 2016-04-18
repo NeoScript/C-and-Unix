@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 /*
 * Filename: Server.h
 * Author: Chris Rodriguez
@@ -19,10 +17,9 @@ class Server
 {
 private:
 	deque<User> users;
-protected:
+public:
 	User getUser(string);
 	bool userExists(string);
-public:
 	void addUser(string, string);
 	string getListOfUsers();
 	void requestMade(string, string);

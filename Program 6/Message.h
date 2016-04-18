@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 /*
 * Filename: Messages.h
 * Author: Chris Rodriguez
@@ -9,6 +7,8 @@
 #ifndef MESSAGE_H_INCLUDED
 #define MESSAGE_H_INCLUDED
 #include <string>
+#include <ctime>
+#include <time.h>
 using namespace std;
 /*
 * Message

@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 /*
 * Filename: Server.cpp
 * Author: Chris Rodriguez
@@ -53,6 +51,8 @@ User Server::getUser(string user)
 	for (unsigned int i = 0; i < users.size(); i++)
 		if (users.at(i).getUsername() == user)
 			return users.at(i);
+	User g("g", "g");
+	return g;
 }
 
 /*

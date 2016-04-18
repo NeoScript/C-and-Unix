@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 /*
 * Filename: User.cpp
 * Author: Chris Rodriguez

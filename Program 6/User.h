@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 /*
 * Filename: User.h
 * Author: Chris Rodriguez
@@ -23,7 +21,7 @@ using namespace std;
 class User
 {
 private:
-	map<string, deque<Message>> convos; // conversations separated by user
+	map<string, deque<Message> > convos; // conversations separated by user
 	deque<string> requests; // users that have requested partnership with you
 	string username; // name of user
 	string password; // password

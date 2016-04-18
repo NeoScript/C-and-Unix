@@ -1,5 +1,3 @@
-include "stdafx.h"
-
 /*
 * Filename: SuperServer.h
 * Author: Chris Rodriguez
@@ -8,10 +6,11 @@ include "stdafx.h"
 
 #ifndef SUPERSERVER_H_INCLUDED
 #define SUPERSERVER_H_INCLUDED
-#include "Server.h";
+#include "Server.h"
 #include <sys/socket.h>
+#include <netdb.h>
 
-class SuperServer : Server
+class SuperServer : public Server
 {
 private:
 	string user; // store the username
@@ -20,6 +19,7 @@ private:
 	int len;
 	void signIn();
 	void registerUser();
+	void mainMenu();
 	void helper1();
 	void helper2();
 	void helper3();
@@ -29,6 +29,8 @@ private:
 	void helper7();
 	string getInput();
 	void sendInfo(string);
+public:
+	SuperServer();
 };
 
 #endif
