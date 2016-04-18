@@ -2,6 +2,7 @@
 #include <cstring>
 #include <sys/socket.h>
 #include <netdb.h>
+#include <errno.h>
 
 using namespace std;
 void startSocket(char* ip, char* msg, char* port){
@@ -29,7 +30,7 @@ void startSocket(char* ip, char* msg, char* port){
 	std::cout << "Connect()ing..." << std::endl;
 	status = connect(socketfd, host_info_list->ai_addr, host_info_list->ai_addrlen);
 	if (status == -1) 
-		std::cout << "connect error";
+		std::cout << "connect error" << strerror(errno);
 	else
 		cout << "Connection Established" << endl;
 	
@@ -82,8 +83,8 @@ int main(int argc, char* argv[]) {
 	//char ip[] = "216.58.195.46";
 	//char msg[] = "GET / HTTP/1.1\nhost: www.google.com\n\n";
 	//char port[] = "80";
-	char ip[] = "10.21.42.25";
-	char msg[] = "GET / HTTP/1.1\nhost: www.google.com\n\n";
+	char ip[] = "10.21.33.178";
+	char msg[] = "ok";
 	char port[] = "5555";
 	startSocket(ip,msg, port);
 	
