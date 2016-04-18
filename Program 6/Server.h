@@ -24,10 +24,12 @@ public:
 	string getListOfUsers();
 	void requestMade(string, string);
 	string getRequests(string);
-	void finalizeRequest(string, string, bool);
+	void finalizeRequest(string, string, string);
 	string getPartners(string);
 	void depositMessage(string, string, string);
 	string viewMessages(string, string, int);
+	bool arePartners(string, string);
+	bool requestBetween(string, string);
 };
 
 #endif

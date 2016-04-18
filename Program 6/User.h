@@ -36,6 +36,8 @@ public:
 	void addMessage(string, string);
 	string getUsername();
 	string getListOfRequests();
+	bool isPartner(string);
+	bool hasRequest(string);
 };
 
 #endif // USER_H_INCLUDED

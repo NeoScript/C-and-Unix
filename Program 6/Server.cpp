@@ -80,13 +80,13 @@ string Server::getRequests(string user)
 /*
 * finalizeRequest
 * takes an action on a request
-* Arguments:	user, I/P, string		request, I/P, string			accept, I/P, bool
+* Arguments:	user, I/P, string		request, I/P, string			accept, I/P, string
 *				the user taking action	the user that made the request	whether the request was accepted
 */
-void Server::finalizeRequest(string user, string request, bool accept)
+void Server::finalizeRequest(string user, string request, string accept)
 {
 	getUser(user).removeRequest(request);
-	if (accept)
+	if (accept == "true")
 	{
 		getUser(user).addPartner(request);
 		getUser(request).addPartner(user);
@@ -139,4 +139,14 @@ bool Server::userExists(string user)
 		if (users.at(i).getUsername() == user)
 			return true;
 	return false;
+}
+
+bool Server::arePartners(string user, string other)
+{
+	return userExists(other) && getUser(user).isPartner(other);
+}
+
+bool Server::requestBetween(string user, string request)
+{
+	return userExists(request) && getUser(user).hasRequest(request);
 }

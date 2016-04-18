@@ -144,3 +144,18 @@ string User::getListOfRequests()
 		reqs += requests.at(i) + "\n";
 	return reqs;
 }
+
+bool User::isPartner(string partner)
+{
+	if (convos.find(partner) == convos.end())
+		return false;
+	return true;
+}
+
+bool User::hasRequest(string request)
+{
+	for (unsigned int i = 0; i < requests.size(); i++)
+		if (request == requests.at(i))
+			return true;
+	return false;
+}

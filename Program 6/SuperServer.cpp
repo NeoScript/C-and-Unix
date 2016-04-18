@@ -187,7 +187,7 @@ void SuperServer::registerUser()
 	}
 }
 
-/*void SuperServer::mainMenu()
+void SuperServer::mainMenu()
 {
 	while (true)
 	{
@@ -214,4 +214,71 @@ void SuperServer::registerUser()
 void SuperServer::helper1()
 {
 	sendInfo(getListOfUsers());
-}*/
+}
+
+void SuperServer::helper2()
+{
+	sendInfo("Ready");
+
+	string partner = getInput();
+	if (userExists(partner))
+	{
+		requestMade(partner, user);
+		sendInfo("success");
+	}
+	else
+		sendInfo("failure");
+}
+
+void SuperServer::helper3()
+{
+	sendInfo(getRequests(user));
+}
+
+void SuperServer::helper4()
+{
+	sendInfo("Ready");
+	string request = getInput();
+	sendInfo("okay");
+	string accept = getInput();
+	if (requestBetween(user, request))
+	{
+		finalizeRequest(user, request, accept);
+		sendInfo("success");
+	}
+	else
+		sendInfo("failure");
+}
+
+void SuperServer::helper5()
+{
+	sendInfo(user);
+}
+
+void SuperServer::helper6()
+{
+	sendInfo("Ready");
+	string partner = getInput();
+	sendInfo("okay");
+	string message = getInput();
+	if (arePartners(user, partner))
+	{
+		depositMessage(user, partner, message);
+		sendInfo("success");
+	}
+	else
+		sendInfo("failure");
+}
+
+void SuperServer::helper7()
+{
+	sendInfo("Ready");
+	string partner = getInput();
+	sendInfo("okay");
+	string num = getInput();
+	int n = stoi(num);
+	if (arePartners(user, partner))
+		sendInfo(viewMessages(user, partner, n));
+	else
+		sendInfo("Couldn't find partner");
+}
