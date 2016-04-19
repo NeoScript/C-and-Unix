@@ -14,6 +14,7 @@ int len; // so the length is available to all
 string getInput()
 {
 	char input[1000];
+	memset(&input, 0 , sizeof input);
 	recv(sockfd, input, 1000, 0);
 	return string(input);
 }
@@ -21,6 +22,7 @@ string getInput()
 void sendInfo(string message)
 {
 	msg = message.c_str();
+	cout << msg << endl;
 	len = strlen(msg);
 	send(sockfd, msg, len, 0);
 }
@@ -30,13 +32,13 @@ bool signIn(){
 		cout << "Please enter your username: ";
 		string username;
 		cin >> username;
-		cout >> "\nPlease enter a password: ";
+		cout << "\nPlease enter a password: ";
 		string password;
 		cin >> password;
 		sendInfo(username);
 		getInput(); //Gets the okay
 		sendInfo(password);
-		return (getInput=="reject");
+		return (getInput()=="reject");
 }
 
 bool registerUser() {
@@ -44,13 +46,13 @@ bool registerUser() {
 		cout << "Please enter your username: ";
 		string username;
 		cin >> username;
-		cout >> "\nPlease enter a password: ";
+		cout << "\nPlease enter a password: ";
 		string password;
 		cin >> password;
 		sendInfo(username);
 		getInput(); //Gets the okay
 		sendInfo(password);
-		return (getInput=="reject");
+		return (getInput()=="reject");
 }
 
 void helper1()
@@ -66,7 +68,9 @@ void helper2()
 	cout << "Please enter the user you want to make a partnership request to: ";
 	// get the username
 	string name;
+	cin.ignore();
 	getline(cin, name);
+	//cout << name << endl;
 	sendInfo(name); // send the username
 	cout << getInput() << endl;
 }
@@ -92,6 +96,7 @@ void helper4()
 	while (true)
 	{
 		cout << "Do you want to accept or reject the request? ";
+		//cin.ignore();
 		getline(cin, action);
 		if (action == "accept")
 		{
@@ -125,6 +130,7 @@ void helper6()
 	// get and send the username
 	string partner;
 	cout << "Which partner do you want to send a message to? ";
+	cin.ignore();
 	getline(cin, partner);
 	sendInfo(partner);
 	
@@ -133,6 +139,7 @@ void helper6()
 	// get and send the message
 	string mess;
 	cout << "Enter your message: ";
+	cin.ignore();
 	getline(cin, mess);
 	sendInfo(mess);
 	
@@ -151,11 +158,12 @@ bool is_number(const string& s){
 
 void helper7()
 {
-	getInput(); // get "Ready"
+	cout << getInput(); // get "Ready"
 	
 	// get and send the username
 	string partner;
 	cout << "Which partner do you want to view messages from? ";
+	cin.ignore();
 	getline(cin, partner);
 	sendInfo(partner);
 	
@@ -167,10 +175,13 @@ void helper7()
 	while (true)
 	{
 		cout << "How many messages do you want to see? ";
+		//cin.ignore();
 		getline(cin, mess);
+		cout << mess << endl;
 		if (is_number(mess))
 		{
 			sendInfo(mess);
+			cout << "WEEEEEE" << endl;
 			break;
 		}
 		else
@@ -179,7 +190,8 @@ void helper7()
 	
 	
 	// display the message from the server
-	cout << getInput() << endl;
+	string stuff = getInput();
+	cout << stuff << endl;
 }
 
 void startSocket(char* ip, char* msg, char* port){
@@ -235,15 +247,17 @@ void startSocket(char* ip, char* msg, char* port){
 				cout << "Invalid input: len = " << len << endl;
 				continue;
 			}
-			bytes_sent = send(socketfd, userInput, len, 0);
-			char userInputInt = (int)*userInput;
+			bytes_sent = send(sockfd, userInput, len, 0);
+			int userInputInt = *userInput - '0'; 
+			
 			switch (userInputInt){
-				//case 1: menu = signIn();
-				//break;
-				//case 2: menu = registerUser();
-				//break;
+				case 1: menu = signIn();
+				break;
+				case 2: menu = registerUser();
+				break;
 				default: cout << "Invalid option/n" << endl;
 			}
+			//menu = false;
 			
 		}
 		else {
@@ -260,6 +274,8 @@ void startSocket(char* ip, char* msg, char* port){
 			std::cin >> userInput;
 			int len;
 			ssize_t bytes_sent;
+			
+			cout << userInput << endl;
 			len = strlen(userInput);
 			
 			if(len != 1){
@@ -267,23 +283,25 @@ void startSocket(char* ip, char* msg, char* port){
 				continue;
 			}
 			
-			bytes_sent = send(socketfd, userInput, len, 0);
-			char userInputInt = (int)*userInput;
+			sendInfo(userInput);
+			
+			int userInputInt = *userInput - '0';
 			switch(userInputInt){
-					//case 1: helper1();
-					//break;
-					//case 2: helper2();
-					//break;
-					//case 3: helper3();
-					//break;
-					//case 4: helper4();
-					//break;
-					//case 5: helper5();
-					//break;
-					//case 6: helper6();
-					//break;
-					//case 7: helper7();
-					//break;
+					case 1: cout << "helper1" << endl;
+					helper1();
+					break;
+					case 2: helper2();
+					break;
+					case 3: helper3();
+					break;
+					case 4: helper4();
+					break;
+					case 5: helper5();
+					break;
+					case 6: helper6();
+					break;
+					case 7: helper7();
+					break;
 					default: cout << "Invalid Option\n" << endl;
 			}
 			

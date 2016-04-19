@@ -86,14 +86,17 @@ string User::getListOfPartners()
 */
 string User::getMessages(string partner, int n)
 {
-	string mess;
+	string mess = "";
 	deque<Message> deck = convos.at(partner);
 
 	for (int i = 0; i < n; i++)
 	{
 		mess += deck.at(i).getMessage() + "\n";
 	}
-
+	
+	if (mess == "")
+		return "what the fuck";
+	
 	return mess;
 }
 

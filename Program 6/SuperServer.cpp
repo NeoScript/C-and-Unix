@@ -123,6 +123,7 @@ SuperServer::SuperServer()
 string SuperServer::getInput()
 {
 	char input[1000];
+	memset(&input, 0 , sizeof input);
 	recv(sockfd, input, 1000, 0);
 	return string(input);
 }
@@ -140,13 +141,13 @@ void SuperServer::signIn()
 	
 	// Send confirmation
 	sendInfo("Ready");
-	
+	cout << "READY" << endl;
 	// get username
 	string name = getInput();
 	
 	// send confirmation of name received
 	sendInfo("got it");
-
+	cout << "got it"<< endl;
 	// get password
 	string pass = getInput();
 
@@ -157,7 +158,7 @@ void SuperServer::signIn()
 		{
 			sendInfo("accept");
 			user = name;
-			//mainMenu();
+			mainMenu();
 		}
 		else
 			sendInfo("reject");
@@ -169,13 +170,14 @@ void SuperServer::signIn()
 void SuperServer::registerUser()
 {
 	sendInfo("Ready");
+	cout << "READY" << endl;
 
 	// get username
 	string name = getInput();
-
+	
 	// send confirmation of name received
 	sendInfo("got it");
-
+	cout << "got it" << endl;
 	// get password
 	string pass = getInput();
 
@@ -185,18 +187,24 @@ void SuperServer::registerUser()
 	{
 		addUser(name, pass);
 		sendInfo("accept");
+		cout << "accept" << endl;
 		user = name;
-		//mainMenu();
+		mainMenu();
 	}
 }
 
 void SuperServer::mainMenu()
 {
+	cout << "main menu" << endl;
 	while (true)
 	{
 		string num = getInput();
+		cout << num << endl;
 		if (num == "1")
+		{
+			cout << "1" << endl;
 			helper1();
+		}
 		else if (num == "2")
 			helper2();
 		else if (num == "3")
@@ -216,14 +224,17 @@ void SuperServer::mainMenu()
 
 void SuperServer::helper1()
 {
+	cout << getListOfUsers() << endl;
 	sendInfo(getListOfUsers());
+	cout << "helper1" << endl;
 }
 
 void SuperServer::helper2()
 {
 	sendInfo("Ready");
-
+	cout << "READY" << endl;
 	string partner = getInput();
+	cout << partner << endl;
 	if (userExists(partner))
 	{
 		requestMade(partner, user);
@@ -231,6 +242,8 @@ void SuperServer::helper2()
 	}
 	else
 		sendInfo("failure");
+	cout << "helper1" << endl;
+
 }
 
 void SuperServer::helper3()
@@ -275,11 +288,18 @@ void SuperServer::helper6()
 
 void SuperServer::helper7()
 {
-	sendInfo("Ready");
+	cout << "Ready" << endl;
+	sendInfo("ReadyF");
+	cout << "Ready" << endl;
 	string partner = getInput();
 	sendInfo("okay");
+	cout << "okay" << endl;
 	string num = getInput();
-	int n = stoi(num);
+	cout << num << endl;
+	if (num == "")
+		cout << "empty" << endl;
+	int n = atoi(num.c_str());
+	cout << n << endl;
 	if (arePartners(user, partner))
 		sendInfo(viewMessages(user, partner, n));
 	else
