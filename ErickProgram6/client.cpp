@@ -7,6 +7,24 @@
 
 using namespace std;
 
+int sockfd; // so the socketfd is in the scope of all helper functions
+const char *msg; // so the char array address is available to all
+int len; // so the length is available to all
+
+string getInput()
+{
+	char input[1000];
+	recv(sockfd, input, 1000, 0);
+	return string(input);
+}
+
+void sendInfo(string message)
+{
+	msg = message.c_str();
+	len = strlen(msg);
+	send(sockfd, msg, len, 0);
+}
+
 bool signIn(){
 		getInput();
 		cout << "Please enter your username: ";
@@ -33,24 +51,6 @@ bool registerUser() {
 		getInput(); //Gets the okay
 		sendInfo(password);
 		return (getInput=="reject");
-}
-
-int sockfd; // so the socketfd is in the scope of all helper functions
-const char *msg; // so the char array address is available to all
-int len; // so the length is available to all
-
-string getInput()
-{
-	char input[1000];
-	recv(sockfd, input, 1000, 0);
-	return string(input);
-}
-
-void sendInfo(string message)
-{
-	msg = message.c_str();
-	len = strlen(msg);
-	send(sockfd, msg, len, 0);
 }
 
 void helper1()
