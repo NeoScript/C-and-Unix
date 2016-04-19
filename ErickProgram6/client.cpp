@@ -1,10 +1,159 @@
 #include <iostream>
 #include <cstring>
+#include <string>
 #include <sys/socket.h>
 #include <netdb.h>
 #include <errno.h>
 
 using namespace std;
+
+int sockfd; // so the socketfd is in the scope of all helper functions
+const char *msg; // so the char array address is available to all
+int len; // so the length is available to all
+
+string getInput()
+{
+	char input[1000];
+	recv(sockfd, input, 1000, 0);
+	return string(input);
+}
+
+void sendInfo(string message)
+{
+	msg = message.c_str();
+	len = strlen(msg);
+	send(sockfd, msg, len, 0);
+}
+
+void helper1()
+{
+	// I'm getting the list of users
+	string users = getInput();
+	cout << users << endl;
+}
+
+void helper2()
+{
+	getInput(); // get the "Ready" from the server
+	cout << "Please enter the user you want to make a partnership request to: ";
+	// get the username
+	string name;
+	getline(cin, name);
+	sendInfo(name); // send the username
+	cout << getInput() << endl;
+}
+
+void helper3()
+{
+	cout << "List of requests:\n" << getInput() << endl;
+}
+
+void helper4()
+{
+	getInput(); // get "Ready"
+	
+	// get and send the request
+	cout << "Which request do you want to act on? ";
+	string request;
+	cin >> request;
+	sendInfo(request);
+	
+	// get and send the action
+	getInput(); // get the "okay"
+	string action;
+	while (true)
+	{
+		cout << "Do you want to accept or reject the request? ";
+		getline(cin, action);
+		if (action == "accept")
+		{
+			sendInfo("true");
+			break;
+		}
+		else if (action == "reject")
+		{
+			sendInfo("false");
+			break;
+		}
+		else
+		{
+			cout << "Invalid action." << endl;
+		}
+	}
+	
+	// Display the message from the server
+	cout << getInput() << endl;
+}
+
+void helper5()
+{
+	cout << "List of partners" << getInput() << endl;
+}
+
+void helper6()
+{
+	getInput(); // get "Ready"
+	
+	// get and send the username
+	string partner;
+	cout << "Which partner do you want to send a message to? ";
+	getline(cin, partner);
+	sendInfo(partner);
+	
+	getInput(); // get the "okay"
+	
+	// get and send the message
+	string mess;
+	cout << "Enter your message: ";
+	getline(cin, mess);
+	sendInfo(mess);
+	
+	// display the message from the server
+	cout << getInput() << endl;
+}
+
+bool is_number(const string& s){
+   for(int i = 0; i < s.length(); i++)//for each char in string,
+      if(! (s[i] >= '0' && s[i] <= '9' || s[i] == ' ') ) return false;
+      //if s[i] is between '0' and '9' of if it's a whitespace (there may be some before and after
+      // the number) it's ok. otherwise it isn't a number.
+
+   return true;
+}
+
+void helper7()
+{
+	getInput(); // get "Ready"
+	
+	// get and send the username
+	string partner;
+	cout << "Which partner do you want to view messages from? ";
+	getline(cin, partner);
+	sendInfo(partner);
+	
+	getInput(); // get the "okay"
+	
+	// get and send the number of messages wanted
+	string mess;
+	string numbers = "";
+	while (true)
+	{
+		cout << "How many messages do you want to see? ";
+		getline(cin, mess);
+		if (is_number(mess))
+		{
+			sendInfo(mess);
+			break;
+		}
+		else
+			cout << "Please enter a number." << endl;
+	}
+	
+	
+	// display the message from the server
+	cout << getInput() << endl;
+}
+
 void startSocket(char* ip, char* msg, char* port){
 	int status;
 	struct addrinfo host_info;
@@ -33,6 +182,9 @@ void startSocket(char* ip, char* msg, char* port){
 		std::cout << "connect error" << strerror(errno);
 	else
 		cout << "Connection Established" << endl;
+	
+	// for helper methods
+	sockfd = socketfd;
 	
 	while (true) {
 		

@@ -255,7 +255,7 @@ void SuperServer::helper4()
 
 void SuperServer::helper5()
 {
-	sendInfo(user);
+	sendInfo(getPartners(user));
 }
 
 void SuperServer::helper6()
