@@ -4,6 +4,7 @@
 #include <sys/socket.h>
 #include <netdb.h>
 #include <errno.h>
+#include <stdlib.h>
 
 using namespace std;
 
@@ -251,6 +252,7 @@ void startSocket(char* ip, char* msg, char* port){
 			int userInputInt = *userInput - '0'; 
 			
 			switch (userInputInt){
+				case 0: exit(EXIT_SUCCESS);
 				case 1: menu = signIn();
 				break;
 				case 2: menu = registerUser();
@@ -287,6 +289,8 @@ void startSocket(char* ip, char* msg, char* port){
 			
 			int userInputInt = *userInput - '0';
 			switch(userInputInt){
+					case 0: menu = true;
+					break;
 					case 1: cout << "helper1" << endl;
 					helper1();
 					break;
