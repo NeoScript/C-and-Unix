@@ -25,6 +25,7 @@ void Server::addUser(string name, string pass)
 {
 	User user(name, pass);
 	users.push_front(user);
+	
 }
 
 /*

@@ -68,13 +68,15 @@ void User::removeRequest(string person)
 */
 string User::getListOfPartners()
 {
-	string partners;
+	string partners = "";
 
 	for (map<string, deque<Message>>::iterator it = convos.begin(); it != convos.end(); ++it)
 	{
 		partners += it->first + "\n";
 	}
-
+	if (partners == "")
+		return "empty";
+	
 	return partners;
 }
 
@@ -95,7 +97,7 @@ string User::getMessages(string partner, int n)
 	}
 	
 	if (mess == "")
-		return "what the fuck";
+		return "empty";
 	
 	return mess;
 }
@@ -142,9 +144,11 @@ string User::getUsername()
 */
 string User::getListOfRequests()
 {
-	string reqs;
+	string reqs = "";
 	for (unsigned int i = 0; i < requests.size(); i++)
 		reqs += requests.at(i) + "\n";
+	if (reqs == "")
+		return "empty";
 	return reqs;
 }
 

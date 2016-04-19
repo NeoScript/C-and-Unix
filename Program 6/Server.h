@@ -30,6 +30,8 @@ public:
 	string viewMessages(string, string, int);
 	bool arePartners(string, string);
 	bool requestBetween(string, string);
+	virtual string getInput() { return "wrong class"; }
+	virtual void sendInfo() { string nothing = "nothing to do here"; }
 };
 
 #endif

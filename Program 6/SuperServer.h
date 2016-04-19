@@ -12,7 +12,7 @@
 
 class SuperServer : public Server
 {
-private:
+public:
 	string user; // store the username
 	const char *msg;
 	int sockfd;
@@ -29,7 +29,6 @@ private:
 	void helper7();
 	string getInput();
 	void sendInfo(string);
-public:
 	SuperServer();
 };
 
