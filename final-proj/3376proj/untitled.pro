@@ -1,9 +1,3 @@
-#-------------------------------------------------
-#
-# Project created by QtCreator 2016-04-24T14:30:36
-#
-#-------------------------------------------------
-
 QT       += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -21,3 +15,8 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui
 
 LIBS += `pkg-config opencv --libs`
+
+DISTFILES += \
+    haarcascade_eye_tree_eyeglasses.xml \
+    haarcascade_frontalface_alt.xml \
+    overlays/

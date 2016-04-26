@@ -7,12 +7,16 @@
 #include <opencv2/core.hpp>
 
 using namespace cv;
-
+/**
+ * @brief The OverlayObject struct
+ * This struct is used in order to create a base struct of overlays
+ */
 struct OverlayObject{
   virtual Mat getOverlay(){
       return Mat();
   }
 };
+//This is required in order to add to the combo box
 Q_DECLARE_METATYPE(OverlayObject*)
 
 struct SmileyOverlay: public OverlayObject{

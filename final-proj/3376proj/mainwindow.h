@@ -8,10 +8,13 @@
 #include "opencv2/videoio.hpp"
 #include "opencv2/highgui.hpp"
 #include "opencv2/imgproc.hpp"
+#include "opencv2/imgcodecs.hpp"
 
 #include <iostream>
 #include <stdio.h>
 #include <ctime>
+
+#include <overlayobject.h>
 
 using namespace std;
 using namespace cv;
@@ -28,6 +31,9 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     Ui::MainWindow *ui; // the widget
+    static void printError(string err){
+        cout << "Error: "<<err << endl;
+    }
 
 private:
     QTimer *timer; // the timer that will refresh the widget
@@ -36,6 +42,8 @@ private:
     Mat overlayMat;
     Mat backup;
 
+    const static int frame_height = 640;
+    const static int frame_width = 480;
     double timeLastSet;
 
     /** Global variables */
@@ -45,7 +53,10 @@ private:
     CascadeClassifier eyes_cascade;
     String window_name = "Capture - Face detection";
 
-
+    bool usingOverlay = false;
+    bool recording = false;
+    std::string outputFile= "output";
+    VideoWriter recorder;
     void overlayImage(const Mat &background, const Mat &foreground, Mat &output, Point2i location);
 
     void detectAndDisplay(Mat &frame);
@@ -54,6 +65,8 @@ private slots:
     void on_browseButton_clicked();
     void on_webcamPushButton_clicked();
     void on_videofilePushButton_clicked();
+    void on_recordButton_clicked();
+    void on_comboBox_currentIndexChanged(int index);
 };
 
 #endif // MAINWINDOW_H
