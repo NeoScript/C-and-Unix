@@ -107,8 +107,7 @@ void MainWindow::overlayImage(const Mat &background, const Mat &foreground, Mat 
         break;
 
       // determine the opacity of the foregrond pixel, using its fourth (alpha) channel.
-      double opacity = 1;
-              //        ((double)foreground.data[fY * foreground.step + fX * foreground.channels() + 3])/ 255.;
+      double opacity = ((double)foreground.data[fY * foreground.step + fX * foreground.channels() + 3])/ 255.;
 
 
       // and now combine the background and foreground pixel, using the opacity,
